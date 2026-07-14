@@ -1,5 +1,3 @@
-const SITE_ORIGIN = 'https://main--aem-boilerplate-llm--manji6.aem.live';
-
 // Sample data for standalone/preview mode.
 // In production, data comes dynamically from bridge.toolResult.
 const SAMPLE_DATA = [
@@ -48,21 +46,14 @@ function renderItems(block, items, bridge) {
     desc.textContent = item.description || '';
     info.appendChild(desc);
 
-    const link = document.createElement('a');
-    link.className = 'list-articles-cta';
-    link.textContent = 'Tell me more';
-    if (item.path) {
-      link.href = `${SITE_ORIGIN}${item.path}`;
-      link.target = '_blank';
-      link.rel = 'noopener noreferrer';
+    const btn = document.createElement('button');
+    btn.className = 'list-articles-cta';
+    btn.type = 'button';
+    btn.textContent = 'Tell me more';
+    if (bridge) {
+      btn.addEventListener('click', () => bridge.sendMessage(`Tell me more about ${item.title}`));
     }
-    if (bridge && item.path) {
-      link.addEventListener('click', (e) => {
-        e.preventDefault();
-        bridge.openLink(link.href);
-      });
-    }
-    info.appendChild(link);
+    info.appendChild(btn);
 
     card.appendChild(info);
     track.appendChild(card);
