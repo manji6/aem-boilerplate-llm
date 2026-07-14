@@ -1,0 +1,184 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;600;700&family=Inter:wght@400;500;600&display=swap');
+
+/* Required for correct iframe sizing — AEM section margins inflate shadow body */
+main > div,
+main > .section,
+main > .section:first-of-type {
+  margin: 0;
+}
+
+main > .section > div {
+  max-width: none;
+  padding: 0;
+}
+
+body {
+  overflow: auto;
+}
+
+main .list-articles {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  padding: 8px;
+  max-width: 780px;
+}
+
+main .list-articles .list-articles-wrapper {
+  position: relative;
+}
+
+main .list-articles .list-articles-track {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+main .list-articles .list-articles-track::-webkit-scrollbar {
+  display: none;
+}
+
+main .list-articles .list-articles-card {
+  flex: 0 0 220px;
+  height: 300px;
+  border-radius: 0.85rem;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  scroll-snap-align: start;
+  box-sizing: border-box;
+  background: #fdfbf7;
+  color: #1f2420;
+  border: 1px solid rgb(15 40 30 / 8%);
+  box-shadow: 0 1px 3px rgb(15 40 30 / 8%);
+}
+
+main .list-articles .list-articles-header {
+  flex: 6;
+  background-color: #d8d2c4;
+  background-size: cover;
+  background-position: center;
+}
+
+main .list-articles .list-articles-info {
+  flex: 4;
+  padding: 10px 14px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+main .list-articles .list-articles-title {
+  margin: 0 0 4px;
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.25;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+main .list-articles .list-articles-desc {
+  margin: 0 0 8px;
+  font-size: 11px;
+  line-height: 1.35;
+  color: #565f57;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+main .list-articles .list-articles-cta {
+  margin-top: auto;
+  width: 100%;
+  padding: 8px;
+  border: none;
+  border-top: 1px solid rgb(15 40 30 / 10%);
+  border-radius: 6px;
+  background: #0f7a5c;
+  color: #fff;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+
+main .list-articles .list-articles-cta:hover {
+  opacity: 0.85;
+}
+
+main .list-articles .list-articles-cta:focus-visible {
+  outline: 2px solid #0f7a5c;
+  outline-offset: 2px;
+}
+
+main .list-articles .list-articles-fade {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 60px;
+  pointer-events: none;
+  border-radius: 0 0.85rem 0.85rem 0;
+  background: linear-gradient(to right, transparent, rgb(253 251 247 / 90%));
+}
+
+main .list-articles .list-articles-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 50%;
+  background: rgb(15 40 30 / 70%);
+  color: #fff;
+  font-size: 13px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  transition: background 0.15s;
+}
+
+main .list-articles .list-articles-nav:hover {
+  background: rgb(15 40 30 / 90%);
+}
+
+main .list-articles .list-articles-nav:focus-visible {
+  outline: 2px solid #0f7a5c;
+  outline-offset: 2px;
+}
+
+main .list-articles .list-articles-nav-left {
+  left: 6px;
+}
+
+main .list-articles .list-articles-nav-right {
+  right: 6px;
+}
+
+@media (prefers-color-scheme: dark) {
+  main .list-articles { background: #111; }
+
+  main .list-articles .list-articles-card {
+    background: #1c1f1c;
+    color: #e8e6df;
+    border-color: rgb(255 255 255 / 8%);
+  }
+
+  main .list-articles .list-articles-desc {
+    color: #a8ada6;
+  }
+
+  main .list-articles .list-articles-fade {
+    background: linear-gradient(to right, transparent, rgb(28 31 28 / 90%));
+  }
+}
+body.dark main .list-articles { background: #111; }
