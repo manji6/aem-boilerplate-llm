@@ -15,6 +15,34 @@ const SAMPLE_DATA = [
   },
 ];
 
+// EDS単体（bridgeなし）表示時のフォールバック。LLM Apps側 actions/latest-article/index.js
+// と同じフィルタ・ソート・件数制限ロジックをクライアント側で再現している。
+async function fetchArticles(limit = 10) {
+  try {
+    const resp = await fetch('/article/query-index.json');
+    if (!resp.ok) {
+      console.warn(`list-articles: query-index.json returned ${resp.status}`);
+      return [];
+    }
+    const json = await resp.json();
+    const rows = Array.isArray(json.data) ? json.data : [];
+    return rows
+      .filter((item) => item.title || item.description || item.image || item.date)
+      .map((item) => ({
+        path: item.path || '',
+        title: item.title || '',
+        description: item.description || '',
+        image: item.image || '',
+        date: item.date || '',
+      }))
+      .sort((a, b) => new Date(b.date || 0).getTime() - new Date(a.date || 0).getTime())
+      .slice(0, limit);
+  } catch (e) {
+    console.warn('list-articles: failed to fetch query-index.json', e);
+    return [];
+  }
+}
+
 function renderItems(block, items, bridge) {
   const wrapper = document.createElement('div');
   wrapper.className = 'list-articles-wrapper';
@@ -120,7 +148,7 @@ export default async function decorate(block, bridge) {
       items = structuredContent?.articles || [];
     }
   } else {
-    items = SAMPLE_DATA;
+    items = await fetchArticles();
   }
 
   block.textContent = '';
