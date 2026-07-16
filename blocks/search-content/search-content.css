@@ -6,16 +6,18 @@ main > .section,
 main > .section:first-of-type {
   margin: 0;
 }
+
 main > .section > div {
   max-width: none;
   padding: 0;
 }
+
 body {
   overflow: auto;
 }
 
 main .search-content {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   padding: 8px;
   max-width: 780px;
 }
@@ -48,7 +50,7 @@ main .search-content .search-content-input {
 main .search-content .search-content-input:focus {
   outline: none;
   border-color: #2563eb;
-  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.25);
+  box-shadow: 0 0 0 2px rgb(37 99 235 / 25%);
 }
 
 main .search-content .search-content-search-btn {
@@ -142,7 +144,7 @@ main .search-content .search-content-card-cta {
   margin-top: auto;
   width: 100%;
   border: none;
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  border-top: 1px solid rgb(255 255 255 / 12%);
   background: #2563eb;
   color: #fff;
   font-size: 12px;
@@ -178,7 +180,7 @@ main .search-content .search-content-arrow {
   height: 30px;
   border-radius: 50%;
   border: none;
-  background: rgba(0, 0, 0, 0.55);
+  background: rgb(0 0 0 / 55%);
   color: #fff;
   font-size: 12px;
   line-height: 1;
@@ -217,7 +219,18 @@ main .search-content .search-content-empty {
 /* Dark mode — dim outer widget background; card info strips keep their dark bg */
 @media (prefers-color-scheme: dark) {
   main .search-content { background: #111; }
-  main .search-content .search-content-input { background: #1e1e1e; color: #eee; border-color: #444; }
+
+  main .search-content .search-content-input {
+    background: #1e1e1e;
+    color: #eee;
+    border-color: #444;
+  }
 }
+
 body.dark main .search-content { background: #111; }
-body.dark main .search-content .search-content-input { background: #1e1e1e; color: #eee; border-color: #444; }
+
+body.dark main .search-content .search-content-input {
+  background: #1e1e1e;
+  color: #eee;
+  border-color: #444;
+}
