@@ -79,7 +79,13 @@ function renderItems(block, items, bridge) {
       btn.className = 'list-articles-cta';
       btn.type = 'button';
       btn.textContent = 'Tell me more';
-      btn.addEventListener('click', () => bridge.sendMessage(`Tell me more about the article "${item.title}"`));
+      btn.addEventListener('click', () => {
+        const url = item.path ? `${window.location.origin}${item.path}` : '';
+        const prompt = url
+          ? `Tell me more about the article "${item.title}" (${url})`
+          : `Tell me more about the article "${item.title}"`;
+        bridge.sendMessage(prompt);
+      });
       info.appendChild(btn);
     } else {
       const link = document.createElement('a');
