@@ -79,7 +79,7 @@ function renderItems(block, items, bridge) {
       btn.className = 'list-articles-cta';
       btn.type = 'button';
       btn.textContent = 'Tell me more';
-      btn.addEventListener('click', () => bridge.sendMessage(`Tell me more about ${item.title}`));
+      btn.addEventListener('click', () => bridge.sendMessage(`Tell me more about the article "${item.title}"`));
       info.appendChild(btn);
     } else {
       const link = document.createElement('a');
