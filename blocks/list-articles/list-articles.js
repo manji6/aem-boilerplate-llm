@@ -74,14 +74,20 @@ function renderItems(block, items, bridge) {
     desc.textContent = item.description || '';
     info.appendChild(desc);
 
-    const btn = document.createElement('button');
-    btn.className = 'list-articles-cta';
-    btn.type = 'button';
-    btn.textContent = 'Tell me more';
     if (bridge) {
+      const btn = document.createElement('button');
+      btn.className = 'list-articles-cta';
+      btn.type = 'button';
+      btn.textContent = 'Tell me more';
       btn.addEventListener('click', () => bridge.sendMessage(`Tell me more about ${item.title}`));
+      info.appendChild(btn);
+    } else {
+      const link = document.createElement('a');
+      link.className = 'list-articles-cta';
+      link.href = item.path || '#';
+      link.textContent = '詳しく見る';
+      info.appendChild(link);
     }
-    info.appendChild(btn);
 
     card.appendChild(info);
     track.appendChild(card);
