@@ -1,2 +1,7 @@
 helix-importer-ui
 *.min.js
+
+# Vendored by @adobe/llmapps-sdk postinstall — always overwritten on npm install,
+# so fixing lint issues here directly doesn't stick.
+scripts/aem-embed.js
+scripts/llmapps-sdk.js
